@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+    <!--  Overwrite Convention -->
+
+	<constant name="struts.deMode" value="true"></constant>
+	<constant name="struts.custom.i18n.resources" value="fileUploadmessage"></constant>
+	<!--
+	package: 表示包
+			name:包名,在struts.xml文件中不能有相同的包名,包名是唯一
+			extends: 继承,固定struts-default
+			abstract: 抽像包,被用于继承,一般在抽象包中不声名action
+			namespace: 命名空间,访问路径,默认值为空字符串,可用于模块的划分,命名空间需要加/
+			
+	action:
+			name: 动作名称,
+			class: 动作类全名,
+			method: 处理请求的的方法;
+					1 默认是 public String excute(){
+					}
+					2 方法的要求:
+						1 public
+						2 返回值必须是String
+						3 没有参数
+			
+	result: 
+			name:
+			type:
+				1 dispatcher 转发
+				2 redirect 重定向
+				3 chain 转发到另一个action
+				4 redirectAction	
+	
+	-->
+   
+    <package name="p1" extends="struts-default">
+    	<action name="upload" class="com.day26.web.action.UploadAction"  method="upload">
+    		<interceptor-ref name="defaultStack">
+    			<param name="fileUpload.allowedExtensions">png,jpg</param>
+    		</interceptor-ref>
+    		<result name="input">/upload.jsp</result>
+    	</action>
+    </package>
+    
+    
+    
+    
+</struts>
